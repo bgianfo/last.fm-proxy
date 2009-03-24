@@ -379,18 +379,27 @@ class proxy:
         if station == "/":
             title = "LastFMProxy v" + self.version
             cont = "<html><head><title>" + title + "</title>\n"
+            cont = cont + "<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/dojo/1.2.3/dojo/dojo.xd.js \" djConfig=\"isDebug: false, parseOnLoad: true\"></script>"
             cont = cont + "<link rel=\"shortcut icon\" href=\"/data/favicon.ico\" />\n"
             cont = cont + "<link rel=\"icon\" href=\"/data/favicon.ico\" />\n"
             cont = cont + "<link rel=\"icon\" type=\"image/png\" href=\"/data/nice_favicon.png\" />\n"
             cont = cont + "<link rel=\"stylesheet\" type=\"text/css\" media=\"screen\" href=\"data/" + config.theme + ".css\" />\n"
+            #cont = cont + "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://ajax.googleapis.com/ajax/libs/dojo/1.2.3/dijit/themes/nihilo/nihilo.css\"/>"
+            cont = cont + "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://ajax.googleapis.com/ajax/libs/dojo/1.2.3/dijit/themes/tundra/tundra.css\"/>"
+            cont = cont + "<link rel=\"stylesheet\" type=\"text/css\" href=\"http://ajax.googleapis.com/ajax/libs/dojo/1.2.3/dojo/resources/dojo.css\"/>"
             cont = cont + "<script>\n"
             cont = cont + "var host = 'http://" + http["Host"] + "';\n"
             f = open(os.path.join(self.basedir, "data", "main.js"), "r")
             cont = cont + f.read()
             f.close()
+            cont = cont + "dojo.require(\"dijit.dijit\");\n"
+            cont = cont + "dojo.require(\"dijit.ProgressBar\");\n"
+            cont = cont + "dojo.require(\"dijit.form.Button\");\n"
+            cont = cont + "dojo.require(\"dijit.form.CheckBox\");\n"
+            cont = cont + "dojo.require(\"dojo.parser\");\n"
             cont = cont + "</script>\n"
 
-            cont = cont + "</head><body>\n"
+            cont = cont + "</head><body class=\"tundra\">\n"
             cont = cont + "<form action=\"/\" name=\"lfmpform\" method=\"get\">"
 
             f = open(os.path.join(self.basedir, "data", config.theme + ".html"), "r")
@@ -417,17 +426,19 @@ class proxy:
             tmp = "<select name=\"stationselect\" onChange=\"selectstation();\"><option value=\"\">...</option></select>"
             gui = string.replace(gui, "BOOKMARKS", tmp)
 
-            tmp = "<a href=\"/\" target=\"_self\" title=\"Refresh (R)\">Refresh</a> &middot; "
+            tmp = "<button dojoType=\"dijit.form.Button\" onClick=\"window.location = \'http://"+ http["Host"] +"\'\" target=\"_self\" title=\"Refresh (R)\">Refresh</button> &middot; "
 
             tmp = tmp + "<span id=\"lfmp-buttons1\" style=\"display: none;\">"
-            tmp = tmp + "<a href=\"javascript:skip();\" title=\"Skip track (space)\">Skip</a> &middot; "
-            tmp = tmp + "<a href=\"javascript:love();\" title=\"Love this track (enter)\">Love</a> &middot; "
-            tmp = tmp + "<a href=\"javascript:ban();\" title=\"Ban this track (backspace)\">Ban</a> &middot; "
-            tmp = tmp + "<input type=\"checkbox\" onChange=\"togglertp();\" name=\"rtp\" id=\"lfmp-rtp\"> <label for=\"lfmp-rtp\">R<span class=\"lfmp-shortcut\">e</span>cord to profile</label> &middot; "
+            tmp = tmp + "<button dojoType=\"dijit.form.Button\" onClick=\'skip();\' title=\"Skip track (space)\">Skip</button> &middot; "
+            tmp = tmp + "<button dojoType=\"dijit.form.Button\" onClick=\"love();\" title=\"Love this track (enter)\">Love</button> &middot; "
+            tmp = tmp + "<button dojoType=\"dijit.form.Button\" onClick=\"ban();\" title=\"Ban this track (backspace)\">Ban</button> &middot; "
+            tmp = tmp + "<input type=\"checkbox\" dojoType=\"dijit.form.CheckBox\" onChange=\"togglertp();\" name=\"rtp\" id=\"lfmp-rtp\"> <label for=\"lfmp-rtp\">R<span class=\"lfmp-shortcut\">e</span>cord to profile</label> &middot; "
+            options = "'mywindow','width=500,height=500,toolbar=no,menubar=no,scrollbars=no,resizable=no'"
+            tmp = tmp + "<button dojoType=\"dijit.form.Button\" onClick=\"window.open(\'http://" + http["Host"] + "\',"+options+" );\" title=\"Pop out\">Pop Out</button>"
             tmp = tmp + "</span>"
 
             tmp = tmp + "<span id=\"lfmp-buttons2\" style=\"display: none;\">"
-            tmp = tmp + "<a href=\"http://" + http["Host"] + "/lastfm.m3u\">Start radio</a>\n"
+            tmp = tmp + "<button dojoType=\"dijit.form.Button\" onClick=\"window.open(\'http://" + http["Host"] + "/lastfm.m3u\');\">Start radio</button>\n"
             tmp = tmp + "</span>"
 
             gui = string.replace(gui, "BUTTONS", tmp)

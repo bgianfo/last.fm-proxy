@@ -48,6 +48,7 @@ function tick() {
     setTimeout('tick();', 1000); 
     if(trackprogress || trackduration) {
         set('lfmp-dyn-dur', fmt(trackprogress) + ' / ' + fmt(trackduration));
+        progress.update({ progress : trackprogress });
         if(!trackduration || (trackprogress < trackduration)) trackprogress++;
     }
     if(refreshtimer-- < 0) {
@@ -124,7 +125,7 @@ function processresponse(res) {
         set('lfmp-dyn-fanslink', '[<a href="javascript:r(\'/changestation/lastfm://artist/'+encodeURI(np_creator)+'/fans\')">fans</a>]');
         trackprogress = np_metadata_age + parseInt(np_trackprogress);
         trackduration = parseInt(np_duration) / 1000;
-
+        progress.update({ maximum: trackduration, progress:trackprogress });
         if(trackduration > 0) {
             if(trackprogress > trackduration) trackprogress = trackduration;
             refreshtimer = trackduration - trackprogress;

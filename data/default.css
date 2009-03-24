@@ -3,28 +3,29 @@ body {
     margin: 0; 
 }
 div { 
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 #lfmp {
-    padding: 0; 
-    background: #E3E6D8; 
+    background: #FFFFFF; 
 }
 #lfmp-cover { 
     float: left; 
-    padding: 10px;
+
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 #lfmp-header { 
-    background: #91998e; 
+    background-image: url("/data/header.png"); 
     color: white; 
     font-weight: bold; 
-    padding: 5px;
+    height: 30px;
 }
 #lfmp-header a {
     color: white; 
 }
 #lfmp-version {
     float: right;
-    padding: 0;
+    padding: 9px;
     font-weight: normal;
     font-size: small;
 }
@@ -38,24 +39,30 @@ div {
     padding-right: 5px;
     vertical-align: bottom;
 }
-#lfmp-trackinfo {
-    padding: 10px;
-}
 #lfmp-trackinfo div {
-    padding: 5px;
+    margin-top: 10px;
 }
+#lfmp-station {
+    float: left;
+    padding: 9px;
+    font-weight: normal;
+    font-size: small;
+}
+
 #lfmp-artiststations {
     font-size: small;
     color: #91998e;
+    padding:10px;
 }
 #lfmp-artiststations a {
     color: #91998e;
 }
 #lfmp-footer {
-    background: #d20039; 
-    color: white; 
+    background-image: url("/data/footer.png"); 
+    color: black; 
     clear: both;
-    padding: 5px;
+    padding: 8px;
+    height: 20px;
 }
 #lfmp-footer a {
     color: white; 
