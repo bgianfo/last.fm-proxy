@@ -9,6 +9,9 @@ function set(id, cont) {
     if(!e) { if(id != 'debug') set('debug', 'err:' + id); return; }
     e.innerHTML = cont;
 }
+function popup(url,w,h) {
+    window.open(url, "LastFMProxy", 'width='+w+',height='+h+',toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=yes');
+}
 
 function refresh() {
     r('/np');

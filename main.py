@@ -433,8 +433,7 @@ class proxy:
             tmp = tmp + "<button dojoType=\"dijit.form.Button\" onClick=\"love();\" title=\"Love this track (enter)\">Love</button> &middot; "
             tmp = tmp + "<button dojoType=\"dijit.form.Button\" onClick=\"ban();\" title=\"Ban this track (backspace)\">Ban</button> &middot; "
             tmp = tmp + "<input type=\"checkbox\" dojoType=\"dijit.form.CheckBox\" onChange=\"togglertp();\" name=\"rtp\" id=\"lfmp-rtp\"> <label for=\"lfmp-rtp\">R<span class=\"lfmp-shortcut\">e</span>cord to profile</label> &middot; "
-            options = "'mywindow','width=500,height=500,toolbar=no,menubar=no,scrollbars=no,resizable=no'"
-            tmp = tmp + "<button dojoType=\"dijit.form.Button\" onClick=\"window.open(\'http://" + http["Host"] + "\',"+options+" );\" title=\"Pop out\">Pop Out</button>"
+            tmp = tmp + "<button dojoType=\"dijit.form.Button\" rel=\"external\" onClick=\"popup(\'/\',700,200); return false;\" title=\"Pop out\">Pop Out</button>"
             tmp = tmp + "</span>"
 
             tmp = tmp + "<span id=\"lfmp-buttons2\" style=\"display: none;\">"

@@ -4,8 +4,8 @@ listenport = 1881
 bind_address = "127.0.0.1"
 
 # Stick your last.fm username and password between the quotes below.
-username = "realrbman"
-password = "sissypu"
+username = ""
+password = ""
 
 # Which theme (skin) to use
 theme = "default"
